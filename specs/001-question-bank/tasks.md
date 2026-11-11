@@ -51,7 +51,7 @@
 - **Requisitos**: Constitution Princípio VI (Git/GitHub, rastreabilidade), §3; plan G1, R-13; RNF-001.
 - **Conclusão**: Artefatos SDD rastreados (não mais untracked); política de commit por fase documentada; histórico Git reflete specs→plan→tasks. Nenhum commit feito sem aprovação.
 - **Dependências**: T001, T002.
-- **Status**: [ ] Pendente.
+- **Status**: [x] Concluída — `specs/` versionado (commit 23d0263); commits por módulo adotados; autorização de commit concedida pelo usuário ("sempre commitar").
 
 ### T004 — Preparar ambiente e dependências com justificativa técnica
 - **Descrição**: Definir ambiente Python local (Windows), `requirements.txt` com Flask e Pytest; incluir Flask-WTF **somente se D-16 aprovar**. Justificar tecnicamente cada dependência (Constitution §3 — novas deps precisam de propósito). Confirmar execução offline (RNF-003).

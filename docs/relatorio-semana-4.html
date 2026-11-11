@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semana 4 — Implementação — MathLab</title>
+<style>
+  :root { --fg:#1f2933; --muted:#52606d; --accent:#2563eb; --border:#d9dee5; }
+  * { box-sizing: border-box; }
+  body { margin:0; color:var(--fg); background:#fff;
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+         line-height:1.55; }
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 1.6rem; margin: 0 0 .5rem; }
+  h2 { font-size: 1.2rem; margin: 1.8rem 0 .6rem; border-bottom:1px solid var(--border); padding-bottom:.3rem; }
+  h3 { font-size: 1rem; margin: 1.1rem 0 .4rem; }
+  p, li { color: var(--fg); }
+  .meta { color: var(--muted); font-size: .95rem; }
+  .meta strong { color: var(--fg); }
+  a { color: var(--accent); }
+  table { width:100%; border-collapse: collapse; margin: .6rem 0 1rem; font-size:.92rem; }
+  th, td { border:1px solid var(--border); padding:.45rem .6rem; text-align:left; vertical-align:top; }
+  th { background:#f4f6f8; }
+  code { background:#f1f3f5; padding: .1rem .3rem; border-radius:4px; font-size:.9em; }
+  pre { background:#f4f6f8; border:1px solid var(--border); border-radius:6px; padding:.8rem; overflow:auto; }
+  blockquote { margin: .8rem 0; padding:.5rem .9rem; border-left:3px solid var(--accent); background:#f8fafc; color:var(--muted); }
+  .ok { color:#0a7a33; font-weight:600; }
+  @media print {
+    .page { max-width:none; padding:0 12mm; }
+    a { color:#000; text-decoration: underline; }
+    h2 { page-break-after: avoid; }
+    table, pre { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Semana 4 — Implementação (Relatório de projeto) — MathLab</h1>
+  <p class="meta">
+    <strong>Curso:</strong> DSAIA · <strong>Entrega:</strong> Semana 4 — Implementação (1 ponto, dupla)<br>
+    <strong>Projeto:</strong> MathLab — Banco de Questões de Matemática<br>
+    <strong>Dupla:</strong> Eliseu [e colega]<br>
+    <strong>Repositório:</strong> <a href="https://github.com/Eliseufera/mathlab">github.com/Eliseufera/mathlab</a> ·
+    <strong>Branch:</strong> main · <strong>Data:</strong> 2026-11-11
+  </p>
+
+  <h2>Recorte implementado</h2>
+  <p>Fundação da aplicação web (Flask + SQLite) derivada das tarefas da semana 3
+  (<code>specs/001-question-bank/tasks.md</code>): configuração, <em>app factory</em>,
+  conexão de banco com integridade, tratamento de erros, segurança CSRF e estrutura de
+  rotas com página inicial. As funcionalidades de domínio (CRUD de questões, correção
+  automática, histórico) estão <strong>pendentes</strong> (ver <em>Estado atual</em>).</p>
+  <blockquote>O objetivo desta entrega é demonstrar a transformação de spec e plano em
+  implementação <strong>rastreável</strong>, com controle humano sobre o código gerado por IA —
+  não a aplicação pronta.</blockquote>
+
+  <h2>1. Evidência da implementação (Tasks → Commits → Código)</h2>
+  <p>Commits no GitHub (branch <code>main</code>), cada um com os IDs das tarefas no corpo:</p>
+  <table>
+    <thead><tr><th>Commit</th><th>Mensagem</th><th>Tasks</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://github.com/Eliseufera/mathlab/commit/23d0263"><code>23d0263</code></a></td><td>docs(sdd): spec, plan e tasks</td><td>artefatos SDD (G1)</td></tr>
+      <tr><td><a href="https://github.com/Eliseufera/mathlab/commit/a813e8e"><code>a813e8e</code></a></td><td>feat(setup): ambiente, scaffold e app factory</td><td>T004–T007</td></tr>
+      <tr><td><a href="https://github.com/Eliseufera/mathlab/commit/56d20cc"><code>56d20cc</code></a></td><td>feat(backend): db, erros, CSRF, blueprints</td><td>T007–T011</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Mapa tarefa → commit → arquivos</h3>
+  <table>
+    <thead><tr><th>Task</th><th>Entrega</th><th>Commit</th><th>Arquivos principais</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>T001</td><td>Validar conformidade com a Constitution</td><td>auditoria</td><td><code>tasks.md</code>, <code>plan.md</code> §14</td><td class="ok">OK</td></tr>
+      <tr><td>T003</td><td>Versionar artefatos SDD no Git</td><td><code>23d0263</code> + política por módulo</td><td><code>specs/</code>, <code>.specify/</code></td><td class="ok">OK</td></tr>
+      <tr><td>T004</td><td>Ambiente e dependências</td><td><code>a813e8e</code></td><td><code>requirements.txt</code></td><td class="ok">OK</td></tr>
+      <tr><td>T005</td><td>Scaffold app/ e tests/</td><td><code>a813e8e</code></td><td><code>app/</code>, <code>tests/</code></td><td class="ok">OK</td></tr>
+      <tr><td>T006</td><td>Configuração</td><td><code>a813e8e</code></td><td><code>app/config.py</code></td><td class="ok">OK</td></tr>
+      <tr><td>T007</td><td>App factory create_app()</td><td><code>a813e8e</code> + <code>56d20cc</code></td><td><code>app/__init__.py</code></td><td class="ok">OK</td></tr>
+      <tr><td>T008</td><td>Conexão SQLite + PRAGMA foreign_keys=ON</td><td><code>56d20cc</code></td><td><code>app/db.py</code></td><td class="ok">OK</td></tr>
+      <tr><td>T009</td><td>Erros 400/404/409/500</td><td><code>56d20cc</code></td><td><code>app/errors.py</code></td><td class="ok">OK</td></tr>
+      <tr><td>T010</td><td>CSRF + autoescape</td><td><code>56d20cc</code></td><td><code>app/security.py</code></td><td class="ok">OK</td></tr>
+      <tr><td>T011</td><td>Blueprints + GET /</td><td><code>56d20cc</code></td><td><code>app/blueprints/</code>, <code>app/templates/</code></td><td class="ok">OK</td></tr>
+    </tbody>
+  </table>
+  <p>A rastreabilidade completa (T001–T050) está em
+  <code>specs/001-question-bank/tasks.md</code>, com status por tarefa.</p>
+
+  <h2>2. Estado atual da aplicação</h2>
+  <h3>Funciona (na máquina da dupla)</h3>
+  <ul>
+    <li><code>GET /</code> (página inicial com navegação) → HTTP 200.</li>
+    <li>Conexão SQLite por request com <code>PRAGMA foreign_keys=ON</code>; teardown fecha a conexão.</li>
+    <li>Tratamento centralizado de erros 400/404/409/500 (página de erro, sem expor stack/SQL).</li>
+    <li>Proteção CSRF em POST (token em sessão; sem token → 400) e autoescape HTML.</li>
+    <li>Suíte de testes automatizada: <strong>15 testes Pytest verdes</strong>.</li>
+  </ul>
+  <h3>Implementado, porém com limite</h3>
+  <ul>
+    <li>Blueprints criados e registrados, mas as rotas de domínio (<code>/questions</code>, <code>/history</code>) ainda respondem 404 — serão preenchidas nas fases seguintes.</li>
+  </ul>
+  <h3>Pendente (não implementado)</h3>
+  <ul>
+    <li>Fase 3 — schema SQLite (subject, question, alternative, attempt), inicialização e repositórios.</li>
+    <li>Fase 4 — CRUD de questões + filtros por assunto/dificuldade.</li>
+    <li>Fases 5–6 — resolução e correção automática + registro de tentativas.</li>
+    <li>Fase 7 — histórico de desempenho e métricas.</li>
+    <li>Fase 8 — telas completas (CSS responsivo desktop+mobile, JS de aprimoramento).</li>
+  </ul>
+  <p><strong>Bloqueios:</strong> nenhum bloqueio técnico. Duas decisões de design aguardam confirmação do dono do projeto (limites de validação <strong>D-05</strong> e mecanismo de CSRF <strong>D-16</strong>), e há uma alteração pré-existente da Constitution (apenas espaços em branco) ainda não commitada — por decisão de não alterar a Constitution sem aval.</p>
+
+  <h2>3. Stack efetiva</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Escolha</th></tr></thead>
+    <tbody>
+      <tr><td>IDE / editor</td><td>[preencher: ex. VS Code]</td></tr>
+      <tr><td>Linguagem</td><td>Python 3.14.6</td></tr>
+      <tr><td>Framework web</td><td>Flask 3.1.3</td></tr>
+      <tr><td>Banco de dados</td><td>SQLite (módulo <code>sqlite3</code> da stdlib, sem ORM)</td></tr>
+      <tr><td>Testes</td><td>Pytest 9.2.0</td></tr>
+      <tr><td>Frontend</td><td>HTML + CSS + JavaScript vanilla (Jinja2 server-side)</td></tr>
+      <tr><td>Versionamento</td><td>Git + GitHub</td></tr>
+      <tr><td>Ambiente</td><td>virtualenv (<code>.venv</code>)</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Mudança em relação à semana 3:</strong> CSRF implementado com <strong>token manual</strong>
+  (stdlib <code>secrets</code> + sessão) em vez de Flask-WTF, para manter dependências mínimas
+  (Princípio III da Constitution). Demais escolhas: <strong>sem mudança</strong>.</p>
+
+  <h2>4. Revisão do código gerado por IA</h2>
+  <ul>
+    <li><strong>Gate de testes:</strong> nenhuma tarefa marcada como concluída sem a suíte Pytest verde ("completo = critérios atendidos + testes passando").</li>
+    <li><strong>Commits atômicos por módulo</strong>, com o ID das tarefas no corpo, ligando cada alteração à tarefa correspondente.</li>
+    <li><strong>Decisões explícitas:</strong> toda escolha de design (D-05/D-16) registrada e sinalizada para revisão/veto humano.</li>
+    <li><strong>Sem alteração silenciosa:</strong> spec, plan e Constitution não foram alterados sem justificativa; lacunas (G1–G6) reportadas e pendentes de decisão.</li>
+    <li>Revisão humana responsável por executar os testes e aceitar/rejeitar cada entrega.</li>
+  </ul>
+
+  <h2>Como verificar</h2>
+  <pre>git clone https://github.com/Eliseufera/mathlab
+cd mathlab
+python -m venv .venv
+REM Windows:
+.venv\Scripts\activate
+pip install -r requirements.txt
+pytest -q                     REM 15 testes
+flask --app app run           REM abrir http://127.0.0.1:5000/</pre>
+
+</div>
+</body>
+</html>
