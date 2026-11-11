@@ -1,0 +1,7 @@
+# MathLab — dependências do MVP (Constitution §3)
+# Flask: framework web obrigatório (stack §3).
+# Pytest: framework de testes automatizados obrigatório (§3, §4).
+# CSRF implementado com token manual (stdlib secrets + sessão Flask),
+# sem Flask-WTF, para manter dependências mínimas (Princípio III; decisão D-16).
+Flask>=3.0,<4.0
+pytest>=8.0
