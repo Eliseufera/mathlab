@@ -87,7 +87,7 @@
 - **Requisitos**: RNF-002/008; Constitution §4, Princípio III; plan §1–§2 (app factory).
 - **Conclusão**: `create_app()` retorna app Flask configurado; blueprints registrados; app de teste criável com DB isolado; sem regra de negócio nas rotas.
 - **Dependências**: T006.
-- **Status**: [ ] Pendente — fundação create_app() criada e testada (config + instance path); registro de DB/erros/CSRF/blueprints completa a tarefa em T008–T011.
+- **Status**: [x] Concluída — factory registra db/erros/CSRF/blueprints (main/questions/attempts/history); `GET /` 200; validado por 15 testes Pytest.
 
 ### T008 — Conexão SQLite e `PRAGMA foreign_keys=ON`
 - **Descrição**: Implementar `app/db.py`: conexão por request/app, `PRAGMA foreign_keys=ON`, helpers de transação e fechamento adequado. Sem SQL de negócio aqui.
@@ -95,7 +95,7 @@
 - **Requisitos**: RNF-004 (integridade/FK); Constitution §4, Princípio II; plan §1/§7 (db), D-13.
 - **Conclusão**: Conexão reutilizável; FK habilitadas em toda conexão; transações e fechamento corretos; verificável por teste de integridade.
 - **Dependências**: T007.
-- **Status**: [ ] Pendente.
+- **Status**: [x] Concluída — get_db por request (row_factory=Row), PRAGMA foreign_keys=ON (testado =1), teardown fecha conexão.
 
 ### T009 — Tratamento centralizado de erros HTTP
 - **Descrição**: Mapear erros para os códigos do spec §11 (400 validação, 404 não encontrado, 409 regra de negócio, 500 genérico). Mensagem genérica ao usuário + log técnico, sem vazar SQL/stack.
@@ -103,7 +103,7 @@
 - **Requisitos**: spec §11; CA-13; RNF-005; Constitution §4 (erros sem crash); plan §7/§9.
 - **Conclusão**: Erros retornam códigos corretos e mensagem clara; nenhum stack/SQL exposto; falha silenciosa proibida (toda ação responde).
 - **Dependências**: T007.
-- **Status**: [ ] Pendente.
+- **Status**: [x] Concluída — handlers 400/404/409/500 com error.html; 404, 400 (CSRF) e 409 validados por teste; 500 registrado (exercitado em falhas de BD).
 
 ### T010 — CSRF e autoescape (segurança web básica)
 - **Descrição**: Habilitar proteção CSRF em todos os POST (Flask-WTF se D-16, ou token manual) e confirmar Jinja2 autoescape ligado. Base para CA-14/RNF-005.
@@ -111,7 +111,7 @@
 - **Requisitos**: RNF-005; CA-14; Constitution §4 (proteger integridade), Princípio II; plan §8, D-16.
 - **Conclusão**: POST sem token CSRF válido é rejeitado; saída HTML escapada por padrão; decisão D-16 aplicada conforme aprovação.
 - **Dependências**: T007, T002.
-- **Status**: [ ] Pendente.
+- **Status**: [x] Concluída — CSRF manual (D-16, sem Flask-WTF): POST sem token → 400, com token → 200; autoescape HTML confirmado (jinja_env.autoescape).
 
 ### T011 — Blueprints (esqueleto) e rota inicial `GET /`
 - **Descrição**: Registrar blueprints `questions`, `attempts` (ou agrupado em questions), `history` e a rota inicial de navegação. Controllers finos, sem SQL/regra de negócio.
@@ -119,7 +119,7 @@
 - **Requisitos**: RF-010; RNF-002; Constitution Princípio III; plan §2/§6 (rotas), D-12.
 - **Conclusão**: Blueprints registrados; `GET /` responde 200 com navegação; estrutura de rotas pronta para receber handlers nas fases seguintes.
 - **Dependências**: T007, T009.
-- **Status**: [ ] Pendente.
+- **Status**: [x] Concluída — blueprints main/questions/attempts/history registrados; `GET /` 200 com base.html (nav Início/Questões/Histórico); rotas de domínio virão nas fases seguintes.
 
 ---
 
