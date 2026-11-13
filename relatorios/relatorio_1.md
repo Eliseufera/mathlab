@@ -37,6 +37,6 @@ Jinja2 entrega a tela. JavaScript fica como complemento. A chave de nenhum servi
 
 ## Recomendação
 
-**Mantenham o banco local de múltipla escolha e concluam o convite de leitura para @MarcoMinozzo.**
+**Mantenham o banco local de múltipla escolha.**
 
 O ciclo é cadastrar, filtrar, responder e ver o acerto. Conta, LaTeX e nuvem não entram nesta etapa. O lugar do segundo integrante permanece vazio, porque não há outra pessoa.
