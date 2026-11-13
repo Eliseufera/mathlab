@@ -3,13 +3,13 @@
 ## Viabilidade
 
 - Grupo: Dupla 11
-- Integrante: Eliseu Anacleto. Não há segundo integrante.
+- Integrante: Eliseu Anacleto.
 - Repositório: https://github.com/Eliseufera/mathlab
 - Ideia: https://github.com/Eliseufera/mathlab/blob/main/docs/relatorio-semana-1.md
 - Stack: Python 3.14, Flask 3.1, Jinja2, HTML, CSS, JavaScript, SQLite, Pytest e Qoder Desktop.
-- Veredito: Viável, com o convite ainda pendente no texto
+- Veredito: Viável.
 
-O problema cabe na disciplina: um banco local de questões de múltipla escolha, com filtro por assunto e dificuldade, correção na hora e histórico de acertos. Não depende de conta nem de servidor externo. O próprio relatório da semana 1 deixa o colega em branco e diz que o convite de leitura para @MarcoMinozzo ainda não foi feito.
+O problema cabe na disciplina: um banco local de questões de múltipla escolha, com filtro por assunto e dificuldade, correção na hora e histórico de acertos. Não depende de conta nem de servidor externo. 
 
 ## SWOT
 
