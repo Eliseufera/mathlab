@@ -2,7 +2,7 @@
 
 - **Projeto:** MathLab — banco de questões de matemática
 - **Repositório:** <https://github.com/Eliseufera/mathlab>
-- **Dupla:** Eliseu e [colega — preencher]
+- **Dupla:** Dupla 11 — Eliseu Anacleto
 - **Agente utilizado:** Qoder (agente de IA integrado ao editor)
 - **Recorte:** Fase 2 da implementação (commit `56d20cc`) e a proposta de emenda à especificação registrada como G1c
 
