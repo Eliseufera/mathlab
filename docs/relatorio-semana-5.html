@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semana 5 — Governança de contribuições assistidas por IA | MathLab</title>
+<style>
+  :root {
+    --ink: #1c2430;
+    --muted: #5b6778;
+    --line: #d8dee8;
+    --accent: #1f4e79;
+    --bg: #ffffff;
+    --soft: #f4f7fb;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: #eef2f7;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16.5px;
+    line-height: 1.62;
+  }
+  main {
+    max-width: 900px;
+    margin: 32px auto;
+    background: var(--bg);
+    padding: 56px 64px 48px;
+    box-shadow: 0 4px 24px rgba(20, 35, 55, .10);
+  }
+  header { border-bottom: 3px solid var(--accent); padding-bottom: 18px; margin-bottom: 26px; }
+  .kicker {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+  h1 { font-size: 29px; line-height: 1.2; margin: 0 0 8px; color: var(--accent); }
+  .subtitle { font-family: "Segoe UI", Arial, sans-serif; font-size: 14px; color: var(--muted); margin: 0; }
+  .meta {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 13.5px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 0 0 30px;
+  }
+  .meta dl { display: grid; grid-template-columns: 150px 1fr; gap: 5px 12px; margin: 0; }
+  .meta dt { color: var(--muted); font-weight: 600; }
+  .meta dd { margin: 0; }
+  h2 {
+    font-size: 20px;
+    color: var(--accent);
+    margin: 34px 0 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: 16.5px; margin: 22px 0 6px; }
+  p { margin: 0 0 14px; text-align: justify; hyphens: auto; }
+  strong { color: #13283f; }
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin-bottom: 7px; }
+  code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: .88em;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 4px;
+  }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(31, 78, 121, .35); }
+  a:hover { border-bottom-color: var(--accent); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 24px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 13.2px;
+    line-height: 1.5;
+  }
+  caption { caption-side: bottom; font-size: 12px; color: var(--muted); padding-top: 8px; text-align: left; }
+  th, td { border: 1px solid var(--line); padding: 9px 10px; vertical-align: top; text-align: left; }
+  th { background: var(--accent); color: #fff; font-weight: 600; }
+  tbody tr:nth-child(even) { background: #f7f9fc; }
+  .callout {
+    background: var(--soft);
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  footer {
+    margin-top: 42px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 720px) {
+    body { background: #fff; }
+    main { margin: 0; padding: 28px 20px; box-shadow: none; }
+    h1 { font-size: 23px; }
+    .meta dl { grid-template-columns: 1fr; gap: 2px; }
+    .meta dt { margin-top: 6px; }
+    table { font-size: 12px; }
+    th, td { padding: 7px; }
+    footer { display: block; }
+  }
+  @media print {
+    @page { size: A4; margin: 16mm 15mm 14mm; }
+    body { background: #fff; font-size: 10.6pt; line-height: 1.48; }
+    main { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+    h1 { font-size: 18pt; }
+    h2 { font-size: 13pt; page-break-after: avoid; }
+    h3 { font-size: 11.2pt; page-break-after: avoid; }
+    p { orphans: 3; widows: 3; }
+    table { font-size: 8.4pt; page-break-inside: avoid; }
+    thead { display: table-header-group; }
+    tr { page-break-inside: avoid; }
+    .meta, .callout, footer { page-break-inside: avoid; }
+    a { color: inherit; text-decoration: none; border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <p class="kicker">DSAIA · Relatório de projeto · Semana 5</p>
+  <h1>Governança de contribuições assistidas por IA</h1>
+  <p class="subtitle">MathLab — banco de questões de matemática · Dupla 11 · Eliseu Anacleto</p>
+</header>
+
+<div class="meta">
+  <dl>
+    <dt>Repositório</dt>
+    <dd><a href="https://github.com/Eliseufera/mathlab">github.com/Eliseufera/mathlab</a></dd>
+    <dt>Agente utilizado</dt>
+    <dd>Qoder (agente de IA integrado ao editor)</dd>
+    <dt>Recorte</dt>
+    <dd>Fase 2 da implementação (commit <code>56d20cc</code>) e a proposta de emenda à especificação registrada como G1c</dd>
+  </dl>
+</div>
+
+<h2>1. Caso concreto</h2>
+
+<p>O caso escolhido é o commit <a href="https://github.com/Eliseufera/mathlab/commit/56d20cc"><code>56d20cc</code></a> — <em>feat(backend): sqlite connection, error handlers, CSRF, blueprints (T007-T011)</em> — produzido com auxílio do agente. Ele reúne a conexão SQLite (<a href="https://github.com/Eliseufera/mathlab/blob/main/app/db.py"><code>app/db.py</code></a>), o tratamento centralizado de erros (<a href="https://github.com/Eliseufera/mathlab/blob/main/app/errors.py"><code>app/errors.py</code></a>), a proteção CSRF (<a href="https://github.com/Eliseufera/mathlab/blob/main/app/security.py"><code>app/security.py</code></a>), os blueprints, os templates e os testes de backend (<a href="https://github.com/Eliseufera/mathlab/blob/main/tests/test_backend.py"><code>tests/test_backend.py</code></a>). O agente também propôs, no mesmo período, uma alteração na especificação: atualizar a nota do topo do <a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/spec.md#L9"><code>spec.md</code></a>, que ainda afirma que a Constitution não existe no workspace.</p>
+
+<p>As duas contribuições são verificáveis no histórico público: o commit está na branch <code>main</code>, e a especificação permanece exatamente como foi versionada em <a href="https://github.com/Eliseufera/mathlab/commit/23d0263"><code>23d0263</code></a> — <code>git log -- specs/001-question-bank/spec.md</code> mostra um único commit. Ou seja, a emenda proposta pelo agente <strong>não</strong> foi incorporada.</p>
+
+<h2>2. O que a dupla avaliou e decidiu</h2>
+
+<p>A avaliação não foi uma revisão genérica de código. A dupla aplicou três critérios definidos antes da implementação, todos derivados da Constitution e das regras combinadas para o trabalho:</p>
+
+<ol>
+  <li><strong>A especificação é a linha de base e só muda com aprovação explícita</strong> (Constituição, §8; regra &ldquo;não alterar a especificação silenciosamente&rdquo;).</li>
+  <li><strong>Dependência nova só entra com justificativa técnica</strong> (Princípio III; §3).</li>
+  <li><strong>Tarefa só é concluída quando os critérios de aceite foram satisfeitos e os testes passaram</strong> (§4), nunca por ter sido gerada com sucesso.</li>
+</ol>
+
+<h3>Rejeitado — emenda G1c ao <code>spec.md</code></h3>
+
+<p>O agente propôs corrigir a nota da <a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/spec.md#L9">linha 9</a>, que diz que a Constitution &ldquo;não existe&rdquo;, embora ela já tenha sido localizada (D-01 resolvida). A proposta está descrita no plano como lacuna G1c (<a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/plan.md#L295"><code>plan.md</code>, linha 295</a>), e o próprio plano registra a instrução da dupla: <em>&ldquo;só reportar, eu decido&rdquo;</em> (<a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/plan.md#L308">linha 308</a>). A dupla rejeitou a aplicação automática: a nota é imprecisa, mas alterar a especificação é um ato de governança, não uma limpeza editorial, e precisa ser decidido item a item. O texto continua na linha 9 e a divergência segue rastreada como G1c. O critério foi o §8 da Constitution, não a preferência do agente.</p>
+
+<h3>Aceito com ressalva — commit <code>56d20cc</code></h3>
+
+<p>O código entrou porque passou pelos critérios técnicos: a suíte executou <strong>15 testes Pytest, todos verdes</strong> (<code>python -m pytest -q</code>), incluindo FK habilitada, reuso de conexão, autoescape e os dois casos de CSRF (<a href="https://github.com/Eliseufera/mathlab/blob/main/tests/test_backend.py#L32"><code>tests/test_backend.py</code>, linhas 32–45</a>). A aceitação é provisória em um ponto específico: o mecanismo de CSRF é uma decisão de design (D-16) que continua reservada à dupla. O agente implementou a alternativa sem dependência nova e deixou isso explícito em <a href="https://github.com/Eliseufera/mathlab/blob/main/requirements.txt#L4"><code>requirements.txt</code>, linha 4</a>; a aprovação formal de D-16 e a tarefa T002 seguem pendentes.</p>
+
+<h3>Rejeitado — Flask-WTF como dependência</h3>
+
+<p>A opção de usar Flask-WTF estava prevista no plano (D-16, <a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/plan.md#L318">linha 318</a>), mas a dupla aplicou o Princípio III: dependência nova precisa de propósito que justifique o custo. O token manual com <code>secrets</code> e <code>hmac.compare_digest</code> (<a href="https://github.com/Eliseufera/mathlab/blob/main/app/security.py#L24"><code>app/security.py</code>, linha 24</a>) resolve o mesmo requisito de segurança (RNF-005) sem ampliar a superfície de dependências. O <code>requirements.txt</code> registra a justificativa; o teste confirma que POST sem token retorna 400 e POST com token válido passa.</p>
+
+<h3>Reescrito — o critério de &ldquo;pronto&rdquo; da T007</h3>
+
+<p>O agente chegou a tratar a app factory como concluída ao fim da Fase 1. A regra de conclusão da dupla rejeitou o encerramento: o critério da própria T007 exige blueprints registrados, e isso ainda não existia. A tarefa ficou pendente e só foi marcada como concluída depois do commit <code>56d20cc</code>, com os 15 testes passando (<a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/tasks.md#L90"><code>tasks.md</code>, linha 90</a>). Foi uma correção de estado, não de código — mas é exatamente o tipo de decisão que o agente não pode tomar sozinho, porque &ldquo;pronto&rdquo; é definido pela dupla e pela Constitution.</p>
+
+<h2>3. A porta humana</h2>
+
+<p>A decisão que o agente não poderia tomar sozinho é a <strong>alteração da especificação</strong>. O §8 da Constitution estabelece que qualquer mudança de princípio ou de baseline precisa ser documentada e revisada pelo dono do projeto; o agente pode detectar a inconsistência e propor a correção, mas não pode aplicá-la. Foi o que aconteceu: a emenda G1c foi reportada, a dupla decidiu mantê-la pendente e o <code>spec.md</code> não foi tocado. O mesmo vale para D-16: o agente pode implementar uma alternativa provisória e provar que ela passa nos testes, mas <strong>não pode declarar a decisão de design aprovada</strong>. A conclusão da T010 (<a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/tasks.md#L114"><code>tasks.md</code>, linha 114</a>) é, por isso, condicional: ela descreve o comportamento verificado, não a ratificação de D-16.</p>
+
+<p>Há ainda duas portas humanas menores, mas relevantes. A primeira é o <strong>commit/merge</strong>: o repositório pertence à dupla, e o agente só versionou porque havia autorização explícita para colocar toda alteração no Git/GitHub; o histórico público permite reverter qualquer contribuição. A segunda é uma <strong>alteração não produzida pelo agente na Constitution</strong> (diferença de espaços em branco no arquivo): o agente a detectou, deixou-a fora de todos os commits e não a &ldquo;corrigiu&rdquo;, porque mudança constitucional é decisão da dupla, não efeito colateral de uma tarefa. Nenhum dado pessoal ou sensível entrou no projeto: o MVP não tem autenticação nem identidade de respondente (D-02 segue pendente).</p>
+
+<h2>4. Relação com a Constitution</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Regra</th>
+      <th scope="col">Onde está</th>
+      <th scope="col">Como foi aplicada neste caso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Princípio V — Human Supervision of AI</strong></td>
+      <td><a href="https://github.com/Eliseufera/mathlab/blob/main/.specify/memory/constitution.md#L85"><code>constitution.md</code>, linha 85</a></td>
+      <td>O agente gerou código e propostas, mas a emenda à spec não foi aplicada, D-16 não foi declarada aprovada e nenhuma saída foi aceita só por ter sido gerada.</td>
+    </tr>
+    <tr>
+      <td><strong>Princípio III — Simplicity and Maintainability</strong></td>
+      <td><a href="https://github.com/Eliseufera/mathlab/blob/main/.specify/memory/constitution.md#L51">linha 51</a></td>
+      <td>Flask-WTF foi rejeitado; o CSRF manual resolve o requisito sem dependência adicional.</td>
+    </tr>
+    <tr>
+      <td><strong>§4 — Quality and Testing</strong></td>
+      <td><a href="https://github.com/Eliseufera/mathlab/blob/main/.specify/memory/constitution.md#L155">linha 155</a></td>
+      <td>O commit só foi aceito com a suíte verde (15 testes); a T007 só foi concluída após o critério de aceite ser cumprido.</td>
+    </tr>
+    <tr>
+      <td><strong>§8 — Governance and Amendments</strong></td>
+      <td><a href="https://github.com/Eliseufera/mathlab/blob/main/.specify/memory/constitution.md#L235">linha 235</a></td>
+      <td>A especificação não foi alterada pelo agente; a emenda G1c permanece reportada e reservada à dupla.</td>
+    </tr>
+    <tr>
+      <td><strong>Princípio VI — Version Control and Traceability</strong></td>
+      <td><a href="https://github.com/Eliseufera/mathlab/blob/main/.specify/memory/constitution.md#L113">linha 113</a></td>
+      <td>Commits citam os IDs das tarefas (<code>T007-T011</code>) e ligam requisito, código e evidência de testes no histórico público.</td>
+    </tr>
+  </tbody>
+  <caption>Regras da Constitution aplicadas às decisões sobre a contribuição do agente.</caption>
+</table>
+
+<p>O Princípio V é o que dá sentido à semana: ele não proíbe o agente de gerar; ele proíbe a dupla de transferir ao agente a responsabilidade pelo que entra. A revisão humana, nesse caso, aparece como decisões registradas — rejeitar a emenda, recusar a dependência, aceitar o commit com ressalva e segurar a conclusão da tarefa — e não como um &ldquo;ok&rdquo; genérico.</p>
+
+<h2>5. Pendências assumidas</h2>
+
+<p>O controle humano também significa não esconder o que ficou aberto: D-02…D-17 e as emendas G1–G6 continuam pendentes de decisão item a item (T002); a nota desatualizada do <code>spec.md</code> e a frase &ldquo;todas estão [ ] Pendente&rdquo; no topo do <code>tasks.md</code> seguem no repositório, à espera de autorização para corrigir; a conclusão da T010 depende da ratificação de D-16; e não houve Pull Request — os commits foram diretos na <code>main</code>, com rastreabilidade pelo link de cada commit.</p>
+
+<h2>6. Conclusão</h2>
+
+<p>O agente acelerou a produção do backend e organizou a evidência, mas as decisões que definem o projeto continuaram com a dupla: o que é baseline, qual dependência entra, quando uma tarefa está pronta e o que pode ser incorporado. O commit <code>56d20cc</code> é a prova de que a contribuição foi avaliada antes de entrar; a nota intocada do <code>spec.md</code> é a prova de que nem toda sugestão do agente vira mudança. É essa separação entre geração e decisão que a Constitution chama de supervisão humana.</p>
+
+<div class="callout">
+  <p><strong>Evidências principais:</strong> commit <a href="https://github.com/Eliseufera/mathlab/commit/56d20cc">56d20cc</a> (código aceito), commit <a href="https://github.com/Eliseufera/mathlab/commit/23d0263">23d0263</a> (spec inalterada), <a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/plan.md#L308">plano, linha 308</a> (instrução &ldquo;só reportar, eu decido&rdquo;) e <a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/tasks.md#L114">tasks.md, linha 114</a> (conclusão condicional da T010).</p>
+</div>
+
+<footer>
+  <span>DSAIA · Semana 5 · MathLab · Dupla 11</span>
+  <span>feito por Eliseu</span>
+</footer>
+
+</main>
+</body>
+</html>
