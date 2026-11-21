@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semana 6 — Validação e README | MathLab</title>
+<style>
+  :root {
+    --ink: #1c2430;
+    --muted: #5b6778;
+    --line: #d8dee8;
+    --accent: #1f4e79;
+    --bg: #ffffff;
+    --soft: #f4f7fb;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: #eef2f7;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16.5px;
+    line-height: 1.62;
+  }
+  main {
+    max-width: 900px;
+    margin: 32px auto;
+    background: var(--bg);
+    padding: 56px 64px 48px;
+    box-shadow: 0 4px 24px rgba(20, 35, 55, .10);
+  }
+  header { border-bottom: 3px solid var(--accent); padding-bottom: 18px; margin-bottom: 26px; }
+  .kicker {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+  h1 { font-size: 29px; line-height: 1.2; margin: 0 0 8px; color: var(--accent); }
+  .subtitle { font-family: "Segoe UI", Arial, sans-serif; font-size: 14px; color: var(--muted); margin: 0; }
+  .meta {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 13.5px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 0 0 30px;
+  }
+  .meta dl { display: grid; grid-template-columns: 190px 1fr; gap: 5px 12px; margin: 0; }
+  .meta dt { color: var(--muted); font-weight: 600; }
+  .meta dd { margin: 0; }
+  h2 {
+    font-size: 20px;
+    color: var(--accent);
+    margin: 34px 0 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--line);
+  }
+  h3 { font-size: 16.5px; margin: 22px 0 6px; }
+  p { margin: 0 0 14px; text-align: justify; hyphens: auto; }
+  strong { color: #13283f; }
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin-bottom: 7px; }
+  code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: .88em;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 4px;
+  }
+  pre {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12.6px;
+    line-height: 1.5;
+    background: #0f1b29;
+    color: #e6edf5;
+    padding: 14px 18px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 14px 0 20px;
+    white-space: pre-wrap;
+  }
+  pre code { background: none; border: none; color: inherit; padding: 0; font-size: inherit; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(31, 78, 121, .35); }
+  a:hover { border-bottom-color: var(--accent); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 24px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 13.2px;
+    line-height: 1.5;
+  }
+  caption { caption-side: bottom; font-size: 12px; color: var(--muted); padding-top: 8px; text-align: left; }
+  th, td { border: 1px solid var(--line); padding: 9px 10px; vertical-align: top; text-align: left; }
+  th { background: var(--accent); color: #fff; font-weight: 600; }
+  tbody tr:nth-child(even) { background: #f7f9fc; }
+  .callout {
+    background: var(--soft);
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  footer {
+    margin-top: 42px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 720px) {
+    body { background: #fff; }
+    main { margin: 0; padding: 28px 20px; box-shadow: none; }
+    h1 { font-size: 23px; }
+    .meta dl { grid-template-columns: 1fr; gap: 2px; }
+    .meta dt { margin-top: 6px; }
+    table { font-size: 12px; }
+    th, td { padding: 7px; }
+    footer { display: block; }
+  }
+  @media print {
+    @page { size: A4; margin: 16mm 15mm 14mm; }
+    body { background: #fff; font-size: 10.6pt; line-height: 1.48; }
+    main { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+    h1 { font-size: 18pt; }
+    h2 { font-size: 13pt; page-break-after: avoid; }
+    h3 { font-size: 11.2pt; page-break-after: avoid; }
+    p { orphans: 3; widows: 3; }
+    table { font-size: 8.4pt; page-break-inside: avoid; }
+    pre { font-size: 8.6pt; white-space: pre-wrap; page-break-inside: avoid; }
+    thead { display: table-header-group; }
+    tr { page-break-inside: avoid; }
+    .meta, .callout, footer { page-break-inside: avoid; }
+    a { color: inherit; text-decoration: none; border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <p class="kicker">DSAIA · Relatório de projeto · Semana 6</p>
+  <h1>Validação e README</h1>
+  <p class="subtitle">MathLab — banco de questões de matemática · Dupla 11 · Eliseu Anacleto</p>
+</header>
+
+<div class="meta">
+  <dl>
+    <dt>Repositório</dt>
+    <dd><a href="https://github.com/Eliseufera/mathlab">github.com/Eliseufera/mathlab</a></dd>
+    <dt>Data da validação</dt>
+    <dd>21/11/2026</dd>
+    <dt>Commit testado no clone limpo</dt>
+    <dd><code>6509f91</code></dd>
+    <dt>Ambiente</dt>
+    <dd>Windows 10.0.22621, Git Bash, Python 3.14.6, Flask 3.1.3, Pytest 9.2.0</dd>
+  </dl>
+</div>
+
+<div class="callout">
+  <p><strong>Escopo desta entrega.</strong> O recorte funcional definido na semana 3 (cadastrar, filtrar, responder, corrigir e consultar histórico) <strong>ainda não está implementado</strong>. Este relatório valida a fundação entregue até aqui e registra explicitamente os 404 e as limitações conhecidas — não declara o recorte pronto.</p>
+</div>
+
+<h2>1. Evidência de validação</h2>
+
+<h3>1.1 Escopo validado — e o que não foi</h3>
+
+<p>A validação abaixo cobre a fundação entregue até aqui e <strong>não</strong> afirma que o recorte está pronto. O bloqueio está documentado na seção 3. Esta é a leitura honesta do estado: validar a fundação é possível; declarar o recorte validado, não.</p>
+
+<table>
+  <thead>
+    <tr><th>Critério de aceitação</th><th>Estado</th><th>Evidência / motivo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>CA-01 — cadastrar questão e recuperar com alternativa correta</td><td><strong>Não implementado</strong></td><td>Rotas de CRUD e schema ainda não existem (<code>T012</code> em diante).</td></tr>
+    <tr><td>CA-02 — rejeitar cadastro inválido sem persistir</td><td><strong>Não implementado</strong></td><td>Depende do formulário e do schema.</td></tr>
+    <tr><td>CA-03 — editar questão e refletir os novos valores</td><td><strong>Não implementado</strong></td><td>Rota de edição ausente.</td></tr>
+    <tr><td>CA-04 — rejeitar edição inválida mantendo a original</td><td><strong>Não implementado</strong></td><td>Depende da edição.</td></tr>
+    <tr><td>CA-05 — excluir questão e removê-la da listagem</td><td><strong>Não implementado</strong></td><td>Rota de exclusão e listagem ausentes.</td></tr>
+    <tr><td>CA-06 — filtrar por assunto/dificuldade</td><td><strong>Não implementado</strong></td><td>Listagem/filtros ausentes.</td></tr>
+    <tr><td>CA-07 — resposta correta resulta em “correta”</td><td><strong>Não implementado</strong></td><td>Correção automática ausente.</td></tr>
+    <tr><td>CA-08 — resposta incorreta indica a correta</td><td><strong>Não implementado</strong></td><td>Correção automática ausente.</td></tr>
+    <tr><td>CA-09 — uma tentativa registrada por resposta</td><td><strong>Não implementado</strong></td><td>Persistência de tentativas ausente.</td></tr>
+    <tr><td>CA-10 — N respostas geram N registros</td><td><strong>Não implementado</strong></td><td>Persistência de tentativas ausente.</td></tr>
+    <tr><td>CA-11 — métricas do histórico</td><td><strong>Não implementado</strong></td><td>Serviço e rota de histórico ausentes.</td></tr>
+    <tr><td>CA-12 — filtros do histórico</td><td><strong>Não implementado</strong></td><td>Serviço e rota de histórico ausentes.</td></tr>
+    <tr><td>CA-13 — id inexistente retorna “não encontrado”</td><td><strong>Parcial</strong></td><td>O handler genérico de 404 funciona (<code>test_unknown_route_returns_404</code>), mas ainda não há rotas de questão para validar id inexistente.</td></tr>
+    <tr><td>CA-14 — entrada especial é renderizada escapada e sem alterar consultas</td><td><strong>Parcial</strong></td><td>Autoescape configurado (<code>test_autoescape_enabled_for_html</code>) e CSRF rejeita POST sem token (<code>test_post_without_csrf_is_rejected</code>); não há persistência/exibição de payload para testar XSS armazenado, e ainda não há SQL de negócio para testar injeção.</td></tr>
+  </tbody>
+</table>
+
+<h3>1.2 Testes automatizados — 15 testes, 15 verdes</h3>
+
+<p>Comando (na raiz do repositório, com o ambiente virtual ativo):</p>
+
+<pre><code>python -m pytest -q</code></pre>
+
+<p>Saída observada em 21/11/2026 na execução local (no clone limpo, <code>15 passed in 2.10s</code>):</p>
+
+<pre><code>...............                                                          [100%]
+15 passed in 0.31s</code></pre>
+
+<table>
+  <thead>
+    <tr><th>Arquivo / teste</th><th>O que verifica</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>test_app.py::test_create_app_returns_flask_instance</code></td><td>A fábrica retorna uma instância Flask.</td></tr>
+    <tr><td><code>test_app.py::test_default_config_is_not_testing</code></td><td>Configuração padrão não está em modo de teste.</td></tr>
+    <tr><td><code>test_app.py::test_test_config_overrides_defaults</code></td><td>Configuração de teste sobrepõe os padrões.</td></tr>
+    <tr><td><code>test_app.py::test_database_defaults_to_instance_path</code></td><td>Banco padrão aponta para <code>instance/</code>.</td></tr>
+    <tr><td><code>test_app.py::test_instance_directory_exists</code></td><td>Diretório <code>instance/</code> é criado.</td></tr>
+    <tr><td><code>test_app.py::test_difficulty_and_alternative_limits</code></td><td>Constantes de dificuldade e limites de alternativas (proposta D-05, ainda sujeita a aprovação).</td></tr>
+    <tr><td><code>test_app.py::test_client_fixture_is_usable</code></td><td>O client de teste responde.</td></tr>
+    <tr><td><code>test_backend.py::test_home_returns_200</code></td><td><code>GET /</code> retorna 200.</td></tr>
+    <tr><td><code>test_backend.py::test_unknown_route_returns_404</code></td><td>Rota inexistente retorna a página de erro 404.</td></tr>
+    <tr><td><code>test_backend.py::test_foreign_keys_enabled</code></td><td>Toda conexão abre com <code>PRAGMA foreign_keys = ON</code>.</td></tr>
+    <tr><td><code>test_backend.py::test_db_connection_reused_within_context</code></td><td>A conexão é reutilizada dentro do mesmo request/contexto.</td></tr>
+    <tr><td><code>test_backend.py::test_autoescape_enabled_for_html</code></td><td>O autoescape do Jinja2 está ligado para HTML.</td></tr>
+    <tr><td><code>test_backend.py::test_post_without_csrf_is_rejected</code></td><td>POST sem token CSRF retorna 400.</td></tr>
+    <tr><td><code>test_backend.py::test_post_with_valid_csrf_passes</code></td><td>POST com token de sessão válido passa.</td></tr>
+    <tr><td><code>test_backend.py::test_409_handler_renders_error_page</code></td><td>Erro de regra de negócio (409) renderiza a página de erro.</td></tr>
+  </tbody>
+</table>
+
+<p>Os testes usam banco SQLite temporário por execução, definido em <a href="https://github.com/Eliseufera/mathlab/blob/main/tests/conftest.py"><code>tests/conftest.py</code></a>, e a configuração de teste (<code>TESTING=True</code>).</p>
+
+<h3>1.3 Checklist manual reproduzível</h3>
+
+<p>Pré-requisito: aplicação em execução com <code>python -m flask --app app run</code> (porta 5000). Em Windows, use <code>curl.exe</code> se o <code>curl</code> não estiver disponível no shell.</p>
+
+<table>
+  <thead>
+    <tr><th>Passo</th><th>Ação</th><th>Resultado esperado</th><th>Resultado observado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><code>curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5000/</code></td><td><code>200</code></td><td><code>200</code></td></tr>
+    <tr><td>2</td><td>Abrir <a href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a> no navegador</td><td>Página inicial com o título “MathLab”</td><td>Página exibida com <code>&lt;h1&gt;MathLab&lt;/h1&gt;</code></td></tr>
+    <tr><td>3</td><td><code>curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5000/rota-inexistente</code></td><td><code>404</code> com página de erro, sem stack trace</td><td><code>404</code> e página “Erro 404”</td></tr>
+    <tr><td>4</td><td>Acessar “Questões” no menu</td><td><strong>404</strong> nesta etapa (limitação conhecida)</td><td><code>404</code> — rota ainda não implementada</td></tr>
+    <tr><td>5</td><td>Acessar “Histórico” no menu</td><td><strong>404</strong> nesta etapa (limitação conhecida)</td><td><code>404</code> — rota ainda não implementada</td></tr>
+    <tr><td>6</td><td>Enviar POST sem token CSRF</td><td>Não é possível pela interface atual; coberto pelo teste automatizado</td><td><code>test_post_without_csrf_is_rejected</code> → 400</td></tr>
+  </tbody>
+</table>
+
+<p>O checklist não usa os fluxos de cadastro/resposta porque eles ainda não existem. Ele valida o que é reproduzível hoje e registra explicitamente os 404 conhecidos, em vez de tratá-los como sucesso.</p>
+
+<h3>1.4 Teste do terceiro — clone limpo</h3>
+
+<p>O teste foi feito a partir da URL pública, sem usar o diretório de desenvolvimento. Passos executados:</p>
+
+<pre><code>CLEAN=$(mktemp -d)
+git clone --depth 1 https://github.com/Eliseufera/mathlab.git "$CLEAN/mathlab"
+cd "$CLEAN/mathlab"
+python -m venv .venv
+source .venv/Scripts/activate
+python -m pip install --quiet --disable-pip-version-check -r requirements.txt
+python -m pytest -q</code></pre>
+
+<table>
+  <thead>
+    <tr><th>Verificação</th><th>Resultado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Clone do repositório público</td><td>OK</td></tr>
+    <tr><td>Criação da venv</td><td>OK — Python 3.14.6</td></tr>
+    <tr><td><code>pip install -r requirements.txt</code></td><td>OK — exit code 0</td></tr>
+    <tr><td>Versões instaladas</td><td>Flask 3.1.3, Jinja2 3.1.6, Werkzeug 3.1.9, Pytest 9.2.0</td></tr>
+    <tr><td><code>python -m pytest -q</code></td><td><code>15 passed in 2.10s</code></td></tr>
+    <tr><td><code>python -m flask --app app run</code> (porta 5057)</td><td>Servidor iniciou</td></tr>
+    <tr><td><code>curl http://127.0.0.1:5057/</code></td><td><code>200</code>, com <code>&lt;h1&gt;MathLab&lt;/h1&gt;</code></td></tr>
+    <tr><td>Commit do clone</td><td><code>6509f91</code></td></tr>
+    <tr><td>Diretório temporário</td><td>Removido ao final do teste</td></tr>
+  </tbody>
+</table>
+
+<p>O teste final foi repetido <strong>depois</strong> da publicação deste README e do relatório, no commit <code>6509f91</code>, seguindo a ativação descrita no README (<code>source .venv/Scripts/activate</code> no Git Bash) e apenas a URL pública do repositório. O resultado foi o mesmo: instalação concluída, 15 testes verdes e <code>GET /</code> respondendo 200.</p>
+
+<p>Esse é o teste do terceiro em ambiente limpo: outra pessoa, com apenas a URL, consegue clonar, instalar, executar a aplicação e rodar os testes seguindo o README. O que ela <strong>não</strong> consegue é validar o recorte completo, porque o recorte não está implementado.</p>
+
+<h2>2. README</h2>
+
+<p>Link: <a href="https://github.com/Eliseufera/mathlab/blob/main/README.md">https://github.com/Eliseufera/mathlab/blob/main/README.md</a></p>
+
+<p>O README cobre, na ordem em que uma pessoa de fora precisa:</p>
+
+<ol>
+  <li><strong>Clonar</strong> o repositório.</li>
+  <li><strong>Criar e ativar</strong> o ambiente virtual em Windows (PowerShell e cmd), Git Bash e macOS/Linux, com alternativa sem ativação.</li>
+  <li><strong>Instalar</strong> as dependências com <code>pip install -r requirements.txt</code>.</li>
+  <li><strong>Configurar</strong> <code>SECRET_KEY</code> (opcional em dev) e <code>MATHLAB_DATABASE</code> (opcional), com exemplos por shell; explica que <code>.env</code> não é carregado automaticamente e que nenhuma credencial é versionada.</li>
+  <li><strong>Configurar o banco</strong>: SQLite em arquivo, sem serviço externo; caminho padrão <code>instance/mathlab.sqlite</code>; informa que o schema ainda não existe nesta fase.</li>
+  <li><strong>Executar</strong> com <code>python -m flask --app app run</code> e abrir <code>http://127.0.0.1:5000</code>.</li>
+  <li><strong>Testar</strong> com <code>python -m pytest -q</code> e o resultado esperado (<code>15 passed</code>).</li>
+  <li><strong>Limitações</strong>: o que funciona, o que falta e o que responde 404.</li>
+</ol>
+
+<p>O README foi validado pelo teste do terceiro da seção 1.4. As instruções são suficientes para reproduzir a execução da fundação; não são suficientes para demonstrar o fluxo principal porque ele não existe ainda.</p>
+
+<h2>3. Estado atual e limitações</h2>
+
+<h3>O que funciona de ponta a ponta hoje</h3>
+
+<ul>
+  <li>Clonar, instalar e executar a aplicação em ambiente limpo.</li>
+  <li>Abrir a página inicial (<code>GET /</code> → 200).</li>
+  <li>Receber páginas de erro 400/404/409/500 sem stack trace.</li>
+  <li>Abrir conexões SQLite com chaves estrangeiras ligadas.</li>
+  <li>Rejeitar POST sem CSRF e aceitar POST com token válido.</li>
+  <li>Rodar 15 testes automatizados verdes.</li>
+</ul>
+
+<h3>O que impede o recorte de funcionar de ponta a ponta</h3>
+
+<ol>
+  <li><strong>Schema e repositórios ausentes</strong> (Fase 3, <code>T012</code>–<code>T018</code>): não há tabelas <code>subject</code>, <code>question</code>, <code>alternative</code> ou <code>attempt</code>.</li>
+  <li><strong>CRUD de questões ausente</strong> (Fase 4): não há rotas de cadastro, listagem, edição, exclusão ou filtro.</li>
+  <li><strong>Resposta e correção ausentes</strong> (Fases 5–6): não há formulário de resposta, comparação com o gabarito nem registro de tentativa.</li>
+  <li><strong>Histórico ausente</strong> (Fase 7): não há agregação de métricas nem filtros.</li>
+  <li><strong>Links de navegação quebrados</strong>: “Questões” e “Histórico” retornam 404; é a lacuna visível para quem abre a aplicação.</li>
+  <li><strong>Decisões de design abertas</strong>: D-16 (mecanismo de CSRF) continua sem ratificação formal; D-02, D-05 e D-07 também seguem pendentes. O código atual adota a proposta de MVP, mas não substitui a aprovação da dupla.</li>
+  <li><strong>T010 condicional</strong>: a tarefa está marcada como concluída pelo comportamento verificado, não pela ratificação de D-16.</li>
+</ol>
+
+<h3>O que o README não promete</h3>
+
+<p>O README não afirma que o banco de questões está funcional, não lista cadastro/correção/histórico como disponíveis e não esconde os 404. Quem clonar o projeto encontrará exatamente o estado descrito: uma fundação executável e testada, com o fluxo principal pendente.</p>
+
+<h2>4. Próximos passos para fechar o recorte</h2>
+
+<ol>
+  <li>Implementar <code>app/schema.sql</code>, <code>init_db</code> e seed de assuntos (<code>T012</code>–<code>T018</code>).</li>
+  <li>Implementar repositórios e serviços de questão, com validação de “exatamente uma correta”.</li>
+  <li>Implementar rotas de CRUD e filtros (Fase 4).</li>
+  <li>Implementar resposta, correção e registro atômico de tentativa (Fases 5–6).</li>
+  <li>Implementar histórico e métricas (Fase 7).</li>
+  <li>Ampliar a suíte para cobrir CA-01…CA-14 e repetir o teste do terceiro.</li>
+  <li>Ratificar D-16 e as demais decisões pendentes antes de tratar as tarefas condicionais como definitivas.</li>
+</ol>
+
+<h2>5. Evidências</h2>
+
+<ul>
+  <li>Commit do código testado: <a href="https://github.com/Eliseufera/mathlab/commit/6509f91">github.com/Eliseufera/mathlab/commit/6509f91</a></li>
+  <li>README: <a href="https://github.com/Eliseufera/mathlab/blob/main/README.md">github.com/Eliseufera/mathlab/blob/main/README.md</a></li>
+  <li>Testes: <a href="https://github.com/Eliseufera/mathlab/blob/main/tests/test_app.py">tests/test_app.py</a> e <a href="https://github.com/Eliseufera/mathlab/blob/main/tests/test_backend.py">tests/test_backend.py</a></li>
+  <li>Fixtures: <a href="https://github.com/Eliseufera/mathlab/blob/main/tests/conftest.py">tests/conftest.py</a></li>
+  <li>Tarefas pendentes: <a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/tasks.md">specs/001-question-bank/tasks.md</a></li>
+  <li>Critérios de aceitação: <a href="https://github.com/Eliseufera/mathlab/blob/main/specs/001-question-bank/spec.md">spec.md, seção 8</a></li>
+</ul>
+
+<footer>
+  <span>MathLab · Dupla 11 — Eliseu Anacleto</span>
+  <span>Relatório da Semana 6 · 21/11/2026</span>
+</footer>
+
+</main>
+</body>
+</html>
