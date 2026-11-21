@@ -4,7 +4,7 @@
 - **Repositório:** <https://github.com/Eliseufera/mathlab>
 - **Dupla:** Dupla 11 — Eliseu Anacleto
 - **Data da validação:** 21/11/2026
-- **Commit testado no clone limpo:** `2cef6d0`
+- **Commit testado no clone limpo:** `6509f91`
 - **Ambiente:** Windows 10.0.22621, Git Bash, Python 3.14.6, Flask 3.1.3, Pytest 9.2.0
 
 ## 1. Evidência de validação
@@ -38,7 +38,7 @@ Comando (na raiz do repositório, com o ambiente virtual ativo):
 python -m pytest -q
 ```
 
-Saída observada em 21/11/2026:
+Saída observada em 21/11/2026 na execução local (no clone limpo, `15 passed in 2.10s`):
 
 ```text
 ...............                                                          [100%]
@@ -89,8 +89,9 @@ CLEAN=$(mktemp -d)
 git clone --depth 1 https://github.com/Eliseufera/mathlab.git "$CLEAN/mathlab"
 cd "$CLEAN/mathlab"
 python -m venv .venv
-.venv/Scripts/python.exe -m pip install --quiet --disable-pip-version-check -r requirements.txt
-.venv/Scripts/python.exe -m pytest -q
+source .venv/Scripts/activate
+python -m pip install --quiet --disable-pip-version-check -r requirements.txt
+python -m pytest -q
 ```
 
 Resultados:
@@ -101,11 +102,13 @@ Resultados:
 | Criação da venv | OK — Python 3.14.6 |
 | `pip install -r requirements.txt` | OK — exit code 0 |
 | Versões instaladas | Flask 3.1.3, Jinja2 3.1.6, Werkzeug 3.1.9, Pytest 9.2.0 |
-| `python -m pytest -q` | `15 passed in 0.31s` |
-| `python -m flask --app app run` (porta 5056) | Servidor iniciou |
-| `curl http://127.0.0.1:5056/` | `200`, com `<h1>MathLab</h1>` |
-| Commit do clone | `2cef6d0` |
+| `python -m pytest -q` | `15 passed in 2.10s` |
+| `python -m flask --app app run` (porta 5057) | Servidor iniciou |
+| `curl http://127.0.0.1:5057/` | `200`, com `<h1>MathLab</h1>` |
+| Commit do clone | `6509f91` |
 | Diretório temporário | Removido ao final do teste |
+
+O teste final foi repetido **depois** da publicação deste README e do relatório, no commit `6509f91`, seguindo a ativação descrita no README (`source .venv/Scripts/activate` no Git Bash) e apenas a URL pública do repositório. O resultado foi o mesmo: instalação concluída, 15 testes verdes e `GET /` respondendo 200.
 
 Esse é o teste do terceiro em ambiente limpo: outra pessoa, com apenas a URL, consegue clonar, instalar, executar a aplicação e rodar os testes seguindo o README. O que ela **não** consegue é validar o recorte completo, porque o recorte não está implementado.
 
@@ -163,7 +166,7 @@ O README não afirma que o banco de questões está funcional, não lista cadast
 
 ## 5. Evidências
 
-- Commit do código testado: <https://github.com/Eliseufera/mathlab/commit/2cef6d0>
+- Commit do código testado: <https://github.com/Eliseufera/mathlab/commit/6509f91>
 - README: <https://github.com/Eliseufera/mathlab/blob/main/README.md>
 - Testes: [tests/test_app.py](https://github.com/Eliseufera/mathlab/blob/main/tests/test_app.py) e [tests/test_backend.py](https://github.com/Eliseufera/mathlab/blob/main/tests/test_backend.py)
 - Fixtures: [tests/conftest.py](https://github.com/Eliseufera/mathlab/blob/main/tests/conftest.py)
